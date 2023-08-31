@@ -1,21 +1,31 @@
 package main;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.Scanner;
 
 public class MainApplication {
-
     public static void main(String[] args) {
-        String path = "src/resource/toy.csv";
-        File file = new File(path);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("1 - Ты игрок?");
+            System.out.println("2 - Ты администратор?");
+            System.out.println("3 - Выйти");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    UserView.showMenu();
+                    break;
+                case 2:
+                    AdminView.showMenu();
+                    break;
+                case 3:
+                    System.out.println("Выход...");
+                    Presenter.saveToysToFile();
+                    System.exit(0);
+                default:
+                    System.out.println("Неверный выбор. Пожалуйста, выберите еще раз");
             }
         }
-        ViewMain app = new ViewMain();
-        app.showMenu();
-        }
+    }
 }
