@@ -94,7 +94,7 @@ public class Presenter {
 
     static void viewToys() {
         for (Toy toy : toys) {
-            System.out.println("ИДЕНТИФИКАТОР: " + toy.id + ", Имя: " + toy.name + ", Количество: " + toy.quantity + ", Вероятность: " + toy.probability);
+            System.out.println("ID: " + toy.id + ", Имя: " + toy.name + ", Количество: " + toy.quantity + ", Вероятность: " + toy.probability);
         }
     }
 }
