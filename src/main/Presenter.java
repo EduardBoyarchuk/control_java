@@ -16,9 +16,9 @@ public class Presenter {
     private static List<Toy> toys = new ArrayList<>();
     private static Random random = new Random();
 
-//    static {
-//        loadToysFromFile();
-//    }
+    static {
+        loadToysFromFile();
+    }
 
     static void saveToysToFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILENAME))) {
