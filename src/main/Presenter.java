@@ -48,15 +48,11 @@ public class Presenter {
         }
     }
 
-    static   void addToy(String name, int quantity, double probability) {
-        if (toys.size() < MAX_TOYS) {
+    static void addToy(String name, int quantity, double probability) {
             int id = toys.size() + 1;
             toys.add(new Toy(id, name, quantity, probability));
             saveToysToFile();
             System.out.println("Игрушка успешно добавлена.");
-        } else {
-            System.out.println("Достигнуто максимальное количество игрушек.");
-        }
     }
 
     static void editToy(int id, String newName, int newQuantity, double newProbability) {
@@ -73,24 +69,46 @@ public class Presenter {
         System.out.println("Игрушка не найдена.");
     }
 
+    static void removeQuantityToy(int id, int quantity) {
+        for (Toy toy : toys) {
+            if (toy.id == id) {
+                toy.quantity--;
+            }
+            saveToysToFile();
+        }
+        System.out.println("Игрушка успешно удалена.");
+    }
+
     static void removeToy(int id) {
         toys.removeIf(toy -> toy.id == id);
         saveToysToFile();
         System.out.println("Игрушка успешно удалена.");
     }
 
-    static void playGame() {
-        int randomNumber = random.nextInt(15) + 1;
-        for (Toy toy : toys) {
-            if (toy.id == randomNumber) {
-                System.out.println("Поздравляем! Вы выиграли " + toy.name + "!");
-                toys.remove(toy);
-                saveToysToFile();
-                return;
+        static void playGame () {
+            double maxProbability = -1.0;
+            Toy winningToy = null;
+            for (Toy toy : toys) {
+                if (toy.probability > maxProbability && toy.quantity > 0) {
+                    maxProbability = toy.probability;
+                    winningToy = toy;
+                }
+
             }
+
+
+            if (winningToy != null) {
+                System.out.println("Вы выиграли: " + winningToy.name);
+                winningToy.quantity--;
+                System.out.println("Поздравляем! Приз выдан.");
+            } else {
+                System.out.println("Игрушек больше нет.");
+            }
+
         }
-        System.out.println("Извините, на этот раз ни одна игрушка не выиграла.");
-    }
+
+
+
 
     static void viewToys() {
         for (Toy toy : toys) {

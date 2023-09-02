@@ -9,9 +9,10 @@ public class AdminView {
         while (true) {
             System.out.println("1 - Добавить игрушку");
             System.out.println("2 - Редактировать игрушку");
-            System.out.println("3 - Удалить игрушку");
-            System.out.println("4 - Посмотреть игрушки");
-            System.out.println("5 - Вернуться в главное меню");
+            System.out.println("3 - Удалить игрушки(количество)");
+            System.out.println("4 - Удалить игрушки(полностью)");
+            System.out.println("5 - Посмотреть игрушки");
+            System.out.println("6 - Вернуться в главное меню");
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -42,12 +43,19 @@ public class AdminView {
                 case 3:
                     System.out.print("Введите ID игрушки, которую нужно удалить: ");
                     int idToRemove = scanner.nextInt();
-                    Presenter.removeToy(idToRemove);
+                    System.out.print("Введите количество игрушк, которых нужно удалить: ");
+                    int quantityToRemove = scanner.nextInt();
+                    Presenter.removeQuantityToy(idToRemove,quantityToRemove);
                     break;
                 case 4:
-                    Presenter.viewToys();
+                    System.out.print("Введите ID игрушки, которую нужно удалить: ");
+                    int idRemove = scanner.nextInt();
+                    Presenter.removeToy(idRemove);
                     break;
                 case 5:
+                    Presenter.viewToys();
+                    break;
+                case 6:
                     return;
                 default:
                     System.out.println("Неверный выбор. Пожалуйста, выберите еще раз.");
