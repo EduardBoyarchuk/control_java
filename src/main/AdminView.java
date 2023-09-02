@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class AdminView {
 
     static void showMenu() {
-        Presenter presenter = new Presenter();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1 - Добавить игрушку");
@@ -24,7 +23,7 @@ public class AdminView {
                     int quantity = scanner.nextInt();
                     System.out.print("Введите вероятность игрушки: ");
                     double probability = scanner.nextDouble();
-                    presenter.addToy(name, quantity, probability);
+                    Presenter.addToy(name, quantity, probability);
 
 
                     break;
@@ -46,7 +45,7 @@ public class AdminView {
                     Presenter.removeToy(idToRemove);
                     break;
                 case 4:
-                    presenter.viewToys();
+                    Presenter.viewToys();
                     break;
                 case 5:
                     return;

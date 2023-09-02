@@ -30,7 +30,7 @@ public class Presenter {
         }
     }
 
-    public void loadToysFromFile() {
+    static void loadToysFromFile() {
         try (Scanner scanner = new Scanner(new File(FILENAME))) {
             toys.clear();
             while (scanner.hasNextLine()) {
@@ -48,7 +48,7 @@ public class Presenter {
         }
     }
 
-    public  void addToy(String name, int quantity, double probability) {
+    static   void addToy(String name, int quantity, double probability) {
         if (toys.size() < MAX_TOYS) {
             int id = toys.size() + 1;
             toys.add(new Toy(id, name, quantity, probability));
